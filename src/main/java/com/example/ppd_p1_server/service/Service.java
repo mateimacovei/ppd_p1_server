@@ -49,7 +49,8 @@ public class Service {
 
         sellRepo.save(sell);
         soldPlaceRepo.saveAll(placesToSell);
-        show.setPrice(show.getPrice() + paidPrice);
+//        show.setPrice(show.getPrice() + paidPrice);
+        show.setSold(show.getSold() + paidPrice);
         showRepo.save(show);
     }
 }
