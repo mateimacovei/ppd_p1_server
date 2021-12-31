@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public interface SoldPlaceRepo extends JpaRepository<SoldPlace, Long> {
     @Transactional(readOnly = true)
     List<SoldPlace> findAllBySell_Show_Id(Long showId);

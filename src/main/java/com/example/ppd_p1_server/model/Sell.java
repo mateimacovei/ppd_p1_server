@@ -17,7 +17,7 @@ public class Sell {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Show show;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,6 +27,6 @@ public class Sell {
 
     private Long sum;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sell", cascade = {CascadeType.REMOVE, CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sell", cascade = {CascadeType.REMOVE, CascadeType.ALL})
     private List<SoldPlace> soldPlaces;
 }

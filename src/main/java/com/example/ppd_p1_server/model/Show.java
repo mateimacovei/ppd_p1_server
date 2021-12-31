@@ -20,7 +20,7 @@ public class Show {
     private Long price;
     private Long sold;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "show", cascade = {CascadeType.REMOVE, CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "show", cascade = {CascadeType.REMOVE, CascadeType.ALL})
     private List<Sell> sells;
 
     @ManyToOne(fetch = FetchType.EAGER)
