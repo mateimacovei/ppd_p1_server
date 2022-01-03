@@ -18,8 +18,8 @@ public class Hall {
     private Long id;
     private Long nrPlaces;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hall", cascade = {CascadeType.REMOVE, CascadeType.ALL})
-    private List<Sell> sells;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hall", cascade = {CascadeType.REMOVE, CascadeType.ALL})
+//    private List<Sell> sells;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hall", cascade = {CascadeType.REMOVE, CascadeType.ALL})
     private List<Show> shows;
