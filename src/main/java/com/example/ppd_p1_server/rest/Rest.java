@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,16 +35,23 @@ public class Rest {
     public ResponseEntity<?> reserve(@RequestBody Reservation reservation) throws ExecutionException, InterruptedException {
 //        return new ResponseEntity<>(reservation, HttpStatus.OK);
         Future<ResponseEntity<?>> future = executorService.submit(() -> {
-            var map = new HashMap<String, Boolean>();
+            var map = new HashMap<String, Object>();
             try {
                 service.reserve(reservation);
                 map.put("success", true);
+                map.put("message", "ok");
             } catch (Exception ex) {
                 log.error("Exception thrown", ex);
                 map.put("success", false);
+                map.put("message", ex.getMessage());
             }
             return new ResponseEntity<>(map, HttpStatus.OK);
         });
         return future.get();
+    }
+
+    @Scheduled(fixedRate = 5000)
+    public void verify() {
+        executorService.submit(() -> service.verify());
     }
 }
